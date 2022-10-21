@@ -1,33 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+// import { useNavigate } from 'react-router-dom';
 import { Form, FloatingLabel } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import { useFormik } from 'formik';
 import cn from 'classnames';
+import axios from 'axios';
+import { errorToast } from '../utils/toasts';
 
-import { signupSchema } from '../schemas';
+import { signupSchema } from '../utils/schemas';
 
 // SUBMIT!!!!
-const onSubmit = (values, actions) => {
-  console.log('HELLLLLLOOO!');
-  console.log(values);
-  console.log(actions);
-};
 
 const RegistrationForm = () => {
-  const { values, handleChange, errors, touched, handleBlur, handleSubmit } = useFormik({
-    initialValues: {
-      username: '',
-      password: '',
-      passwordConfirmation: '',
-    },
-    validationSchema: signupSchema,
-    onSubmit,
-  });
-
-  const classes = (type) => cn({ 'is-invalid': Object.hasOwn(errors, type) && Object.hasOwn(touched, type) });
-
+  const [userAlreadyExists, setUserAlreadyExists] = useState(null);
   const { t } = useTranslation();
+  // const navigate = useNavigate();
+
+  const onSubmit = async ({ username, password }) => {
+    await axios
+      .post('/api/v1/signup', { username, password })
+      .then((response) => {
+        console.log(response.data);
+        // navigate('/login');
+      })
+      .catch(({ response }) => {
+        errorToast(t(`toasts.${response.statusText}`));
+        setUserAlreadyExists(true);
+        setTimeout(() => setUserAlreadyExists(false), 10000);
+      });
+  };
+
+  const { values, handleChange, errors, touched, handleBlur, handleSubmit } =
+    useFormik({
+      initialValues: {
+        username: '',
+        password: '',
+        passwordConfirmation: '',
+      },
+      validationSchema: signupSchema,
+      onSubmit,
+    });
+
+  const isFieldInvalid = (type) =>
+    userAlreadyExists ||
+    (Object.hasOwn(errors, type) && Object.hasOwn(touched, type));
+
+  const classes = (type) => cn({ 'is-invalid': isFieldInvalid(type) });
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -45,9 +64,11 @@ const RegistrationForm = () => {
             onBlur={handleBlur}
             className={classes('username')}
           />
-          <div className="invalid-tooltip">
-            {t(`errors.${errors.username}`)}
-          </div>
+          {errors.username && (
+            <div className="invalid-tooltip">
+              {t(`errors.${errors.username}`)}
+            </div>
+          )}
         </FloatingLabel>
         <FloatingLabel
           controlId="password"
@@ -61,9 +82,11 @@ const RegistrationForm = () => {
             onBlur={handleBlur}
             className={classes('password')}
           />
-          <div className="invalid-tooltip">
-            {t(`errors.${errors.password}`)}
-          </div>
+          {errors.password && (
+            <div className="invalid-tooltip">
+              {t(`errors.${errors.password}`)}
+            </div>
+          )}
         </FloatingLabel>
         <FloatingLabel
           controlId="passwordConfirmation"
@@ -77,9 +100,11 @@ const RegistrationForm = () => {
             onBlur={handleBlur}
             className={classes('passwordConfirmation')}
           />
-          <div className="invalid-tooltip">
-            {t(`errors.${errors.passwordConfirmation}`)}
-          </div>
+          {errors.passwordConfirmation && (
+            <div className="invalid-tooltip">
+              {t(`errors.${errors.passwordConfirmation}`)}
+            </div>
+          )}
         </FloatingLabel>
         <Button variant="outline-info" className="w-100" type="submit">
           {t('signupPage.btn')}

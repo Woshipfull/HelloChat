@@ -36,3 +36,7 @@ rules:
   testing-library/no-debug: 0
   react/jsx-filename-extension: [1, { 'extensions': ['.js', '.jsx'] }]
   object-curly-newline: 0
+  implicit-arrow-linebreak: 0
+  operator-linebreak: 0
+  no-param-reassign: 0
+  eact-hooks/exhaustive-deps: 0

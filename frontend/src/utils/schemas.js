@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 const signupSchema = yup.object().shape({
-  username: yup.string().min(3, 'userNameLength').max(20, 'userNameLength').required('emptyField'),
+  username: yup.string().min(3, 'usernameLength').max(20, 'usernameLength').required('emptyField'),
   password: yup.string().min(6, 'passwordLength').required('emptyField'),
   passwordConfirmation: yup
     .string()

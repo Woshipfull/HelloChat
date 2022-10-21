@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import Layout from './Layout';
 import Home from './Home';
@@ -8,14 +9,17 @@ import NotFound from './NotFound';
 import SignupPage from './SignupPage';
 
 const App = () => (
-  <Routes>
-    <Route path="/" element={<Layout />}>
-      <Route index element={<Home />} />
-      <Route path="login" element={<LoginPage />} />
-      <Route path="signup" element={<SignupPage />} />
-      <Route path="*" element={<NotFound />} />
-    </Route>
-  </Routes>
+  <>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="login" element={<LoginPage />} />
+        <Route path="signup" element={<SignupPage />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
+    <ToastContainer />
+  </>
 );
 
 export default App;
