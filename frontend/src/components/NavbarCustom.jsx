@@ -37,7 +37,7 @@ const NavbarCustom = () => {
           <Offcanvas.Header closeButton className="bg-light shadow">
             <p className="h4 m-0">{username()}</p>
           </Offcanvas.Header>
-          <Offcanvas.Body className="d-flex flex-lg-row flex-column justify-content-between gap-2">
+          <Offcanvas.Body className="d-flex flex-lg-row flex-column justify-content-end gap-2">
             <Nav className="gap-1">
               {isAuthorised() && (
                 <Button onClick={handleClick}>{t('navbar.btn')}</Button>

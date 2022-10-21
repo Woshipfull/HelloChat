@@ -20,7 +20,6 @@ const RemoveModal = ({ socket, id }) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
-    console.log('BEFORE');
     setShow(true);
   };
 

@@ -37,7 +37,7 @@ const Home = () => {
           dispatch(addMessages(data.messages));
         })
         .catch((e) => {
-          errorToast(t('asd'));
+          errorToast(t('toasts.connectionError'));
           console.log(e);
         });
     };

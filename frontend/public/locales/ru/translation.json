@@ -33,19 +33,22 @@
         "Conflict": "Пользователь с таким именем уже существует",
         "channelCreated": "Канал создан",
         "channelRenamed": "Канал переименован",
-        "channelRemoved": "Канал удалён"
+        "channelRemoved": "Канал удалён",
+        "connectionError": "Ошибка соединения"
     },
     "navbar": {
         "btn": "Выйти"
     },
     "channels": {
-        "title": "Каналы"
+        "title": "Каналы",
+        "btnClose": "Закрыть"
     },
     "chatWindow": {
         "sendMess": "Введите сообщение...",
         "ariaLabel": "Новое сообщение",
         "sendBtn": "Отправить",
-        "messagesCount": "Всего сообщений: {{count}}"
+        "messagesCount": "Всего сообщений: {{count}}",
+        "btnShowChannels": "Показать каналы"
     },
     "modals": {
         "title": {

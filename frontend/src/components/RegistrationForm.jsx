@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Form, FloatingLabel } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import { useFormik } from 'formik';
@@ -10,19 +10,17 @@ import { errorToast } from '../utils/toasts';
 
 import { signupSchema } from '../utils/schemas';
 
-// SUBMIT!!!!
-
 const RegistrationForm = () => {
   const [userAlreadyExists, setUserAlreadyExists] = useState(null);
   const { t } = useTranslation();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const onSubmit = async ({ username, password }) => {
     await axios
       .post('/api/v1/signup', { username, password })
-      .then((response) => {
-        console.log(response.data);
-        // navigate('/login');
+      .then(({ data }) => {
+        window.localStorage.setItem('user', JSON.stringify(data));
+        navigate('/');
       })
       .catch(({ response }) => {
         errorToast(t(`toasts.${response.statusText}`));

@@ -118,7 +118,7 @@ const ChannelsComponent = ({ show, setShow }) => {
             onClick={handleClose}
             className="d-block d-lg-none w-100 mt-3 rounded-0"
           >
-            CLOSE
+            {t('channels.btnClose').toUpperCase()}
           </Button>
         </Offcanvas.Body>
       </Offcanvas>

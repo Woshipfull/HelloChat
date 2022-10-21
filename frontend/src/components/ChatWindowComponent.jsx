@@ -1,9 +1,9 @@
-/* eslint-disable no-unused-vars */
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import UIfx from 'uifx';
+import filter from 'leo-profanity';
 
 import { addMessage, selectors } from '../slices/messagesSlice';
 import { channelsAll } from '../slices/channelsSlice';
@@ -16,7 +16,7 @@ const ChatWindowComponent = ({ setShow }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const newMessageSound = new UIfx(messageSound);
+  const newMessageSound = useMemo(() => new UIfx(messageSound), []);
 
   const messageWindow = useRef(null);
 
@@ -26,7 +26,7 @@ const ChatWindowComponent = ({ setShow }) => {
     if (window.localStorage.user !== undefined) {
       return JSON.parse(window.localStorage.user).username;
     }
-    return 'No user';
+    return 'Guest';
   };
 
   const activeChannelId = useSelector((state) => state.currentChannel.active);
@@ -41,6 +41,13 @@ const ChatWindowComponent = ({ setShow }) => {
 
   const [text, setText] = useState('');
 
+  const censoredText = (txt) => {
+    filter.loadDictionary('en');
+    const fromEn = filter.clean(txt);
+    filter.loadDictionary('ru');
+    return filter.clean(fromEn);
+  };
+
   const handleChange = ({ target: { value } }) => setText(value);
 
   const handleSend = () => {
@@ -50,7 +57,7 @@ const ChatWindowComponent = ({ setShow }) => {
     }
 
     socket.emit('newMessage', {
-      body: text,
+      body: censoredText(text),
       channelId: activeChannelId,
       username: username(),
     });
@@ -80,9 +87,7 @@ const ChatWindowComponent = ({ setShow }) => {
       dispatch(addMessage(payload));
       newMessageSound.play();
     });
-    console.log('MESSAGE');
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
+  }, [dispatch, newMessageSound]);
 
   return (
     <div className="d-flex flex-column w-100 h-100 justify-content-between">
@@ -92,7 +97,7 @@ const ChatWindowComponent = ({ setShow }) => {
           onClick={handleShow}
           className="d-block d-lg-none rounded-0"
         >
-          SHOW CHANNELS
+          {t('chatWindow.btnShowChannels').toUpperCase()}
         </Button>
         <div className="bg-light mb-4 p-3 shadow-sm small">
           <p className="m-0">
@@ -116,6 +121,7 @@ const ChatWindowComponent = ({ setShow }) => {
             aria-label={t('chatWindow.ariaLabel')}
             className="border-0 p-0 ps-2"
             value={text}
+            autoFocus
             onChange={handleChange}
             onKeyDown={handleEnter}
           />
