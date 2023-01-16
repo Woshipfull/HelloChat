@@ -1,4 +1,12 @@
-### Hexlet tests and linter status:
-[![Actions Status](https://github.com/Woshipfull/frontend-project-12/workflows/hexlet-check/badge.svg)](https://github.com/Woshipfull/frontend-project-12/actions)
+# HelloChat by Woshipfull
 
-https://woshipfull-chat.herokuapp.com - link to app
+Welcome to my educational project **"HelloChat"**
+
+**Link:**
+
+## Tech Stack
+
+- React
+- Redux
+- Bootstrap
+- Socket.io
