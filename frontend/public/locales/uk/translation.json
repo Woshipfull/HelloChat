@@ -1,1 +1,67 @@
-{}
+{
+  "notFoundPage": {
+    "title": "Сторінка не знайдена",
+    "text": "Відвідати ",
+    "linkText": "головну сторінку"
+  },
+  "loginPage": {
+    "title": "Увійти",
+    "name": "Ваш нікнейм",
+    "password": "Пароль",
+    "btn": "Увійти",
+    "noAccount": "Досі не маєте акаунту? ",
+    "link": "Реєстрація",
+    "validationError": "Неправильний нікнейм або пароль"
+  },
+  "signupPage": {
+    "title": "Реєстрація",
+    "name": "Ваш нікнейм",
+    "password": "Пароль",
+    "passwordConfirmation": "Подтвердите пароль",
+    "btn": "Зареєструватись"
+  },
+  "errors": {
+    "usernameLength": "Від 3 до 20 символів",
+    "passwordLength": "Не менше 6 символів",
+    "passwordConfirmation": "Паролі повинні співпадати",
+    "emptyField": "Обовʼязкове поле",
+    "noUser": "Неправильний нікнейм або пароль",
+    "nameTaken": "Канал с таким імʼям вже існує"
+  },
+  "toasts": {
+    "Unauthorized": "Неправильний нікнейм або пароль",
+    "Conflict": "Користувач с таким імʼям вже існує",
+    "channelCreated": "Канал створено",
+    "channelRenamed": "Канал перейменовано",
+    "channelRemoved": "Канал видалений",
+    "connectionError": "Помилка зʼєднання"
+  },
+  "navbar": {
+    "btn": "Вийти"
+  },
+  "channels": {
+    "title": "Канали",
+    "btnClose": "Закрити"
+  },
+  "chatWindow": {
+    "sendMess": "Введіть повідомлення...",
+    "ariaLabel": "Нове повідомлення",
+    "sendBtn": "Відправити",
+    "messagesCount": "Всього повідомлень: {{count}}",
+    "btnShowChannels": "Показати каналы"
+  },
+  "modals": {
+    "title": {
+      "add": "Додати канал",
+      "remove": "Видалити канал",
+      "rename": "Перейменувати канал"
+    },
+    "btns": {
+      "cansel": "Відмінити",
+      "send": "Відправити",
+      "remove": "Видалити",
+      "rename": "Перейменувати"
+    },
+    "sure": "Ви впевненні?"
+  }
+}

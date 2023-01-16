@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Dropdown, Modal, Button, Form, InputGroup } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 
@@ -10,8 +10,6 @@ const RenameModal = ({ channels, socket, currentName, id }) => {
   const [inputState, setInputState] = useState(currentName);
   const [invalid, setInvalid] = useState(null);
   const [show, setShow] = useState(false);
-
-  const input = useRef(null);
 
   const channelsNames = channels.map((channel) => channel.name);
 
@@ -53,15 +51,6 @@ const RenameModal = ({ channels, socket, currentName, id }) => {
     socket.emit('renameChannel', { id, name: inputState.trim() });
   };
 
-  useEffect(() => {
-    console.log(show);
-    console.log(input.current);
-    if (show === true) {
-      console.log(input.current);
-      input.current.select();
-    }
-  });
-
   return (
     <>
       <Dropdown.Item onClick={handleShow}>{texts.mainBtn}</Dropdown.Item>
@@ -82,7 +71,6 @@ const RenameModal = ({ channels, socket, currentName, id }) => {
               <Form.Control
                 value={inputState}
                 onChange={handleChange}
-                ref={input}
                 className={invalid && 'is-invalid'}
               />
               <Form.Control.Feedback type="invalid" tooltip>

@@ -1,0 +1,67 @@
+{
+    "notFoundPage": {
+        "title": "Page not found",
+        "text": "Go to the ",
+        "linkText": "main page"
+    },
+    "loginPage": {
+        "title": "Sign up",
+        "name": "Nickname",
+        "password": "Password",
+        "btn": "Sign up",
+        "noAccount": "Don't have an account yet? ",
+        "link": "Registration",
+        "validationError": "Invalid username or password"
+    },
+    "signupPage": {
+        "title": "Registration",
+        "name": "Nickname",
+        "password": "Password",
+        "passwordConfirmation": "Confirm the password",
+        "btn": "Register"
+    },
+    "errors": {
+        "usernameLength": "Must be between 3 and 20 characters",
+        "passwordLength": "Must be at least 6 characters",
+        "passwordConfirmation": "Passwords must match",
+        "emptyField": "Required field",
+        "noUser": "Invalid username or password",
+        "nameTaken": "A channel with the same name already exists"
+    },
+    "toasts": {
+        "Unauthorized": "Invalid username or password",
+        "Conflict": "A user with the same name already exists",
+        "channelCreated": "Channel created",
+        "channelRenamed": "Channel renamed",
+        "channelRemoved": "Channel removed",
+        "connectionError": "Connection error"
+    },
+    "navbar": {
+        "btn": "Logout"
+    },
+    "channels": {
+        "title": "Channels",
+        "btnClose": "Close"
+    },
+    "chatWindow": {
+        "sendMess": "Enter your message...",
+        "ariaLabel": "new message",
+        "sendBtn": "Send",
+        "messagesCount": "Total messages: {{count}}",
+        "btnShowChannels": "Show channels"
+    },
+    "modals": {
+        "title": {
+            "add": "Add channel",
+            "remove": "Delete channel",
+            "rename": "Rename channel"
+        },
+        "btns": {
+            "cansel": "Cancel",
+            "send": "Send",
+            "remove": "Delete",
+            "rename": "Rename"
+        },
+        "sure": "Are you sure?"
+    }
+}

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
@@ -12,11 +12,11 @@ import messageSound from '../sounds/newMessage.mp3';
 
 import socket from '../socket.js';
 
+const newMessageSound = new UIfx(messageSound);
+
 const ChatWindowComponent = ({ setShow }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-
-  const newMessageSound = useMemo(() => new UIfx(messageSound), []);
 
   const messageWindow = useRef(null);
 
@@ -87,7 +87,7 @@ const ChatWindowComponent = ({ setShow }) => {
       dispatch(addMessage(payload));
       newMessageSound.play();
     });
-  }, [dispatch, newMessageSound]);
+  }, [dispatch]);
 
   return (
     <div className="d-flex flex-column w-100 h-100 justify-content-between">
